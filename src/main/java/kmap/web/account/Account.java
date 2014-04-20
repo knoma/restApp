@@ -7,13 +7,16 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "account")
+@Cacheable(value = true)
 @NamedQuery(name = Account.FIND_BY_EMAIL, query = "select a from Account a where a.email = :email")
 public class Account implements java.io.Serializable {
 
 	public static final String FIND_BY_EMAIL = "Account.findByEmail";
 
-	@Id
-	@GeneratedValue
+
+    @Id
+    @SequenceGenerator(name = "categories_seq", sequenceName = "amdb_categories_id_seq")
+    @GeneratedValue(generator = "categories_seq", strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(unique = true)

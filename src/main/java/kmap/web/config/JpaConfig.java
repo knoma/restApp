@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 
 import kmap.web.Application;
 
+import static org.hibernate.cfg.Environment.*;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = Application.class)
@@ -54,9 +56,15 @@ class JpaConfig implements TransactionManagementConfigurer {
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Properties jpaProperties = new Properties();
-        jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, dialect);
-        jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, hbm2ddlAuto);
+        jpaProperties.put(DIALECT, dialect);
+        jpaProperties.put(HBM2DDL_AUTO, hbm2ddlAuto);
+
+        jpaProperties.put(CACHE_REGION_FACTORY, "org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory");
+        jpaProperties.put(USE_STRUCTURED_CACHE, "true");
+        jpaProperties.put(USE_SECOND_LEVEL_CACHE, "true");
+        jpaProperties.put(USE_QUERY_CACHE, "true");
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
+
 
         return entityManagerFactoryBean;
     }
