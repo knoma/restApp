@@ -1,11 +1,25 @@
 package kmap.web.dataConfig;
 
+import javax.persistence.*;
+
 /**
  * Created by msaidi on 20.04.14.
  */
+@SuppressWarnings("serial")
+@Entity
+@Table(name = "dataconfig")
+@Cacheable(value = true)
 public class DataConfig {
 
+    @Id
+    @SequenceGenerator(name = "dataconfig_seq", sequenceName = "dataconfig_id_seq")
+    @GeneratedValue(generator = "dataconfig_seq", strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String value;
 
     public DataConfig() {

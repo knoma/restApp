@@ -15,8 +15,8 @@ public class Account implements java.io.Serializable {
 
 
     @Id
-    @SequenceGenerator(name = "categories_seq", sequenceName = "amdb_categories_id_seq")
-    @GeneratedValue(generator = "categories_seq", strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "account_seq", sequenceName = "account_id_seq")
+    @GeneratedValue(generator = "account_seq", strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(unique = true)
