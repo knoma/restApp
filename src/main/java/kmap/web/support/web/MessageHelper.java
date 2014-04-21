@@ -1,9 +1,9 @@
 package kmap.web.support.web;
 
-import static kmap.web.support.web.Message.MESSAGE_ATTRIBUTE;
-
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import static kmap.web.support.web.Message.MESSAGE_ATTRIBUTE;
 
 public final class MessageHelper {
 

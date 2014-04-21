@@ -1,5 +1,6 @@
 package kmap.web.account;
 
+import kmap.web.config.WebSecurityConfigurationAware;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -12,15 +13,12 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-
-import kmap.web.config.WebSecurityConfigurationAware;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserAuthenticationIntegrationTest extends WebSecurityConfigurationAware {
 

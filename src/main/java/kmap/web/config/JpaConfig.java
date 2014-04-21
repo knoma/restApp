@@ -1,10 +1,5 @@
 package kmap.web.config;
 
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
-import kmap.web.dataConfig.DataConfigReopistory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +12,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
-import kmap.web.Application;
+import javax.sql.DataSource;
+import java.util.Properties;
 
 import static org.hibernate.cfg.Environment.*;
 
@@ -56,7 +52,7 @@ class JpaConfig implements TransactionManagementConfigurer {
         return transactionManager;
     }
 
-    @Bean(name="entityManagerFactory")
+    @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(configureDataSource());

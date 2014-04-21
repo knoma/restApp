@@ -2,20 +2,17 @@ package kmap.web.dataConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by msaidi on 20.04.14.
  */
 @RestController
-@RequestMapping(value="/data")
+@RequestMapping(value = "/data")
 public class DataConfigController {
 
 
@@ -23,7 +20,7 @@ public class DataConfigController {
     @Autowired
     private DataConfigService configService;
 
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<DataConfig> getAllSeries() {
         List<DataConfig> l = configService.loadDataConfig();
 

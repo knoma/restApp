@@ -1,3 +1,4 @@
 package kmap.web;
 
-public interface Application {}
+public interface Application {
+}

@@ -1,14 +1,5 @@
 package kmap.web.dataConfig;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.*;
-
-import java.util.Collection;
-
-import kmap.web.account.Account;
-import kmap.web.account.AccountRepository;
-import kmap.web.account.UserService;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,41 +8,39 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DataConfigServiceTest {
 
-	@InjectMocks
-	private DataConfigService dataConfigService = new DataConfigService();
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+    @InjectMocks
+    private DataConfigService dataConfigService = new DataConfigService();
+    @Mock
+    private DataConfigReopistory repositoryMock;
 
-	@Mock
-	private DataConfigReopistory repositoryMock;
-
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
-
-	@Test
-	public void shouldInitializeWithTwoDemoDataConfig() {
-		// act
-		dataConfigService.initialize();
-		// assert
-		verify(repositoryMock, times(2)).save(any(DataConfig.class));
-	}
+    @Test
+    public void shouldInitializeWithTwoDemoDataConfig() {
+        // act
+        dataConfigService.initialize();
+        // assert
+        verify(repositoryMock, times(2)).save(any(DataConfig.class));
+    }
 
     @Ignore
-	@Test
-	public void shouldThrowExceptionWhenDataSourceNotFound() {
-		// arrange
-		thrown.expect(DataConfigFoundException.class);
-		thrown.expectMessage("user not found");
+    @Test
+    public void shouldThrowExceptionWhenDataSourceNotFound() {
+        // arrange
+        thrown.expect(DataConfigFoundException.class);
+        thrown.expectMessage("user not found");
 
-		when(repositoryMock.findByName("user")).thenReturn(null);
-		// act
-		dataConfigService.loadByName("user");
-	}
+        when(repositoryMock.findByName("user")).thenReturn(null);
+        // act
+        dataConfigService.loadByName("user");
+    }
 //
 //	@Test
 //	public void shouldReturnUserDetails() {
