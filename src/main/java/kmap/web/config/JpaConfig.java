@@ -49,6 +49,13 @@ class JpaConfig implements TransactionManagementConfigurer {
         return dataSource;
     }
 
+    @Bean
+    public JpaTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(configureEntityManagerFactory().getObject());
+        return transactionManager;
+    }
+
     @Bean(name="entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -59,11 +66,13 @@ class JpaConfig implements TransactionManagementConfigurer {
         Properties jpaProperties = new Properties();
         jpaProperties.put(DIALECT, dialect);
         jpaProperties.put(HBM2DDL_AUTO, hbm2ddlAuto);
-
         jpaProperties.put(CACHE_REGION_FACTORY, "org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory");
         jpaProperties.put(USE_STRUCTURED_CACHE, "true");
         jpaProperties.put(USE_SECOND_LEVEL_CACHE, "true");
         jpaProperties.put(USE_QUERY_CACHE, "true");
+        jpaProperties.put(GENERATE_STATISTICS, "true");
+        jpaProperties.put("javax.persistence.sharedCache.mode", "ENABLE_SELECTIVE");
+
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
 
 

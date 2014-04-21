@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" name="test">
-
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" name="test">
+    <cache name="kmap.web.dataConfig.DataConfig"
+           maxElementsInMemory="10000"
+           eternal="true"
+           overflowToDisk="false"/>
+    <cache name="kmap.web.account.Account"
+           maxElementsInMemory="10000"
+           eternal="true"
+           overflowToDisk="false"/>
     <defaultCache eternal='true'
                   maxElementsInMemory='1000'
-                  overflowToDisk='false' />
+                  overflowToDisk='false'/>
 
 </ehcache>

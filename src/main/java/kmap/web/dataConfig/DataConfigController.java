@@ -1,5 +1,7 @@
 package kmap.web.dataConfig;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +18,14 @@ import java.util.List;
 @RequestMapping(value="/data")
 public class DataConfigController {
 
+
+    @Qualifier("dataConfigService")
+    @Autowired
+    private DataConfigService configService;
+
     @RequestMapping(method= RequestMethod.GET)
-    public List<DataConfig> getAllSeries() throws InterruptedException {Thread.sleep(4000);	//pause to better show sync/async RestTemplate behavior
-
-        List<DataConfig> l = new ArrayList<>();
-
-        for (int i=0; i< 1000; i++){
-            l.add(new DataConfig(""+1,""+1));
-        }
+    public List<DataConfig> getAllSeries() {
+        List<DataConfig> l = configService.loadDataConfig();
 
         return l;
     }

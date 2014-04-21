@@ -21,7 +21,7 @@ public class DataConfigControllerTest extends WebAppConfigurationAware{
         perform
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
-                    .andExpect(jsonPath("$", hasSize(1000))
+                    .andExpect(jsonPath("$", hasSize(2))
 
                     );
         }

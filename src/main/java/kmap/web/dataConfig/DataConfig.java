@@ -8,7 +8,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "dataconfig")
-@Cacheable(value = true)
+@Cacheable(true)
 public class DataConfig {
 
     @Id
